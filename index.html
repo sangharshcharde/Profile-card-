@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sangharsh Charde | Elite Edition</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Luxury Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Outfit:wght@200;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --navy-dark: #00040a;
+            --navy-bright: #001d4a;
+            --sapphire-glow: #0077ff;
+            --silver: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--navy-dark);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: 'Outfit', sans-serif;
+            perspective: 1200px;
+        }
+
+        /* Ambient Rotating Aurora Background */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, var(--navy-bright) 0%, var(--navy-dark) 75%);
+            animation: auroraRotate 30s infinite linear;
+            z-index: -1;
+        }
+
+        @keyframes auroraRotate {
+            0% { transform: translate(-25%, -25%) rotate(0deg); }
+            100% { transform: translate(-25%, -25%) rotate(360deg); }
+        }
+
+        /* The Glass Card Container */
+        .card {
+            position: relative;
+            width: 480px;
+            padding: 70px 40px;
+            background: rgba(0, 15, 35, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50px;
+            backdrop-filter: blur(40px);
+            text-align: center;
+            box-shadow: 0 60px 140px rgba(0, 0, 0, 0.95);
+            transition: all 0.7s cubic-bezier(0.15, 1, 0.3, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-10px) rotateX(2deg);
+            border: 1px solid rgba(0, 119, 255, 0.2);
+            box-shadow: 0 80px 160px rgba(0, 119, 255, 0.1);
+        }
+
+        /* Name Header with Shimmer */
+        .name-header {
+            margin-bottom: 50px;
+        }
+
+        .name-header h1 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 2.1rem;
+            font-weight: 700;
+            color: var(--silver);
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            background: linear-gradient(90deg, #222, #fff, #222);
+            background-repeat: no-repeat;
+            background-size: 80%;
+            animation: textShimmer 4.5s infinite linear;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes textShimmer {
+            0% { background-position: -500%; }
+            100% { background-position: 500%; }
+        }
+
+        /* 3x3 Symmetry Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            justify-items: center;
+        }
+
+        .icon-btn {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--silver);
+            font-size: 28px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 26px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: breathe 4s infinite ease-in-out;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.03); opacity: 1; }
+        }
+
+        .icon-btn:hover {
+            animation: none;
+            transform: translateY(-15px) scale(1.15);
+            color: #fff;
+        }
+
+        /* Branding Ignite Effects */
+        .threads:hover { background: #000; box-shadow: 0 0 30px #fff; border: 1px solid #fff; }
+        .tg:hover { background: #0088cc; box-shadow: 0 0 30px #0088cc; border: none; }
+        .insta:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #bc1888); box-shadow: 0 0 30px #dc2743; border: none; }
+        .yt:hover { background: #FF0000; box-shadow: 0 0 30px #FF0000; border: none; }
+        .wa:hover { background: #25D366; box-shadow: 0 0 30px #25D366; border: none; }
+        .spotify:hover { background: #1DB954; box-shadow: 0 0 30px #1DB954; border: none; }
+        .discord:hover { background: #5865F2; box-shadow: 0 0 30px #5865F2; border: none; }
+        .snap:hover { background: #FFFC00; color: #000; box-shadow: 0 0 30px #FFFC00; border: none; }
+        .mail:hover { background: #EA4335; box-shadow: 0 0 30px #EA4335; border: none; }
+
+        /* Floating App Label */
+        .icon-btn span {
+            position: absolute;
+            bottom: -30px;
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--sapphire-glow);
+            opacity: 0;
+            transition: 0.3s;
+            pointer-events: none;
+        }
+
+        .icon-btn:hover span {
+            opacity: 1;
+            bottom: -22px;
+        }
+
+        /* Premium Bottom Detail */
+        .footer-line {
+            margin-top: 60px;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            position: relative;
+        }
+
+        .footer-line::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--sapphire-glow);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--sapphire-glow);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="name-header">
+            <h1>Sangharsh Charde</h1>
+        </div>
+
+        <div class="grid">
+            <!-- Threads -->
+            <a href="https://www.threads.com/@sangharsh_charde.180" class="icon-btn threads" target="_blank">
+                <i class="fa-brands fa-threads"></i>
+                <span>Threads</span>
+            </a>
+
+            <!-- Telegram -->
+            <a href="https://t.me/sangharsh6700" class="icon-btn tg" target="_blank">
+                <i class="fa-brands fa-telegram"></i>
+                <span>Telegram</span>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/sangharsh_charde.180?igsh=MWJ0N3Bxa3NteDViOQ==" class="icon-btn insta" target="_blank">
+                <i class="fa-brands fa-instagram"></i>
+                <span>Insta</span>
+            </a>
+
+            <!-- YouTube -->
+            <a href="https://youtube.com/@sangharshcharde206?si=XQ5UHNm3oJbghcm5" class="icon-btn yt" target="_blank">
+                <i class="fa-brands fa-youtube"></i>
+                <span>Videos</span>
+            </a>
+
+            <!-- WhatsApp -->
+            <a href="https://wa.me/918308576715" class="icon-btn wa" target="_blank">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>Chat</span>
+            </a>
+
+            <!-- Spotify -->
+            <a href="https://open.spotify.com/user/314kdspffip2np3harmzs2nt4tou?si=lB-8NFnXTLm3iIZN-QGMoA" class="icon-btn spotify" target="_blank">
+                <i class="fa-brands fa-spotify"></i>
+                <span>Music</span>
+            </a>
+
+            <!-- Discord -->
+            <div class="icon-btn discord" onclick="alert('Discord ID: .sangharsh_01')" style="cursor: pointer;">
+                <i class="fa-brands fa-discord"></i>
+                <span>Discord</span>
+            </div>
+
+            <!-- Snapchat -->
+            <a href="https://www.snapchat.com/add/sanghu_66?share_id=LEjKvZkoqA0&locale=en-US" class="icon-btn snap" target="_blank">
+                <i class="fa-brands fa-snapchat"></i>
+                <span>Snap</span>
+            </a>
+
+            <!-- Email -->
+            <a href="mailto:sangharshcharde6700@gmail.com" class="icon-btn mail">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Email</span>
+            </a>
+        </div>
+
+        <div class="footer-line"></div>
+    </div>
+
+</body>
+</html>
