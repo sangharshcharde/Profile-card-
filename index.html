@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sangharsh Charde | Elite Edition</title>
+    <title>Sangharsh Charde | Private Collection</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <!-- Luxury Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Outfit:wght@200;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Plus+Jakarta+Sans:wght@200;400;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --navy-dark: #00040a;
-            --navy-bright: #001d4a;
-            --sapphire-glow: #0077ff;
-            --silver: #e2e8f0;
+            --bg-dark: #020617;
+            --accent-blue: #38bdf8;
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-silver: #f1f5f9;
         }
 
         * {
@@ -24,171 +24,205 @@
         }
 
         body {
-            background: var(--navy-dark);
-            height: 100vh;
+            background-color: var(--bg-dark);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            font-family: 'Outfit', sans-serif;
-            perspective: 1200px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* Ambient Rotating Aurora Background */
-        body::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at center, var(--navy-bright) 0%, var(--navy-dark) 75%);
-            animation: auroraRotate 30s infinite linear;
+        /* Luxury Mesh Background */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 30%, #0c4a6e 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, #1e1b4b 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, #020617 0%, #000 100%);
+            filter: contrast(120%);
         }
 
-        @keyframes auroraRotate {
-            0% { transform: translate(-25%, -25%) rotate(0deg); }
-            100% { transform: translate(-25%, -25%) rotate(360deg); }
+        /* Film Grain Overlay */
+        .ambient-bg::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
-        /* The Glass Card Container */
+        /* The Card */
         .card {
             position: relative;
-            width: 480px;
-            padding: 70px 40px;
-            background: rgba(0, 15, 35, 0.45);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 50px;
-            backdrop-filter: blur(40px);
+            width: 420px;
+            padding: 60px 30px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px) saturate(160%);
+            -webkit-backdrop-filter: blur(25px) saturate(160%);
+            border: 1px solid var(--glass-border);
+            border-radius: 40px;
+            box-shadow: 
+                0 40px 100px rgba(0, 0, 0, 0.8),
+                inset 0 0 20px rgba(255, 255, 255, 0.02);
             text-align: center;
-            box-shadow: 0 60px 140px rgba(0, 0, 0, 0.95);
-            transition: all 0.7s cubic-bezier(0.15, 1, 0.3, 1);
+            animation: cardEntry 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        .card:hover {
-            transform: translateY(-10px) rotateX(2deg);
-            border: 1px solid rgba(0, 119, 255, 0.2);
-            box-shadow: 0 80px 160px rgba(0, 119, 255, 0.1);
+        @keyframes cardEntry {
+            from { opacity: 0; transform: scale(0.9) translateY(30px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        /* Name Header with Shimmer */
+        /* Metallic Name Header */
         .name-header {
-            margin-bottom: 50px;
+            margin-bottom: 45px;
         }
 
         .name-header h1 {
             font-family: 'Syncopate', sans-serif;
-            font-size: 2.1rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            color: var(--silver);
+            letter-spacing: 10px;
             text-transform: uppercase;
-            letter-spacing: 8px;
-            background: linear-gradient(90deg, #222, #fff, #222);
-            background-repeat: no-repeat;
-            background-size: 80%;
-            animation: textShimmer 4.5s infinite linear;
+            background: linear-gradient(
+                to bottom,
+                #ffffff 0%,
+                #94a3b8 50%,
+                #ffffff 100%
+            );
             -webkit-background-clip: text;
-            -webkit-text-fill-color: rgba(255, 255, 255, 0.1);
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px rgba(255,255,255,0.1));
         }
 
-        @keyframes textShimmer {
-            0% { background-position: -500%; }
-            100% { background-position: 500%; }
+        .name-header p {
+            font-size: 9px;
+            letter-spacing: 4px;
+            color: var(--accent-blue);
+            margin-top: 10px;
+            opacity: 0.8;
+            text-transform: uppercase;
         }
 
-        /* 3x3 Symmetry Grid */
+        /* Grid System - 8 Icons centered */
         .grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            justify-items: center;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 20px;
         }
 
         .icon-btn {
             position: relative;
-            width: 80px;
-            height: 80px;
+            height: 75px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            color: var(--silver);
-            font-size: 28px;
-            background: rgba(255, 255, 255, 0.02);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 22px;
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 26px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            animation: breathe 4s infinite ease-in-out;
+            border-radius: 20px;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        @keyframes breathe {
-            0%, 100% { transform: scale(1); opacity: 0.7; }
-            50% { transform: scale(1.03); opacity: 1; }
+        .icon-btn i {
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
         .icon-btn:hover {
-            animation: none;
-            transform: translateY(-15px) scale(1.15);
             color: #fff;
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
         }
 
-        /* Branding Ignite Effects */
-        .threads:hover { background: #000; box-shadow: 0 0 30px #fff; border: 1px solid #fff; }
-        .tg:hover { background: #0088cc; box-shadow: 0 0 30px #0088cc; border: none; }
-        .insta:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #bc1888); box-shadow: 0 0 30px #dc2743; border: none; }
-        .yt:hover { background: #FF0000; box-shadow: 0 0 30px #FF0000; border: none; }
-        .wa:hover { background: #25D366; box-shadow: 0 0 30px #25D366; border: none; }
-        .spotify:hover { background: #1DB954; box-shadow: 0 0 30px #1DB954; border: none; }
-        .discord:hover { background: #5865F2; box-shadow: 0 0 30px #5865F2; border: none; }
-        .snap:hover { background: #FFFC00; color: #000; box-shadow: 0 0 30px #FFFC00; border: none; }
-        .mail:hover { background: #EA4335; box-shadow: 0 0 30px #EA4335; border: none; }
+        .icon-btn:hover i {
+            transform: scale(1.2);
+        }
 
-        /* Floating App Label */
+        /* Tooltip style labels */
         .icon-btn span {
             position: absolute;
-            bottom: -30px;
-            font-size: 9px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            top: -10px;
+            font-size: 8px;
             font-weight: 700;
-            color: var(--sapphire-glow);
+            letter-spacing: 1px;
+            text-transform: uppercase;
             opacity: 0;
             transition: 0.3s;
             pointer-events: none;
+            background: #fff;
+            color: #000;
+            padding: 2px 6px;
+            border-radius: 4px;
         }
 
         .icon-btn:hover span {
             opacity: 1;
-            bottom: -22px;
+            top: -20px;
         }
 
-        /* Premium Bottom Detail */
+        /* Platform Specific Glows */
+        .threads:hover { box-shadow: 0 0 30px rgba(255, 255, 255, 0.15); }
+        .tg:hover { box-shadow: 0 0 30px rgba(0, 136, 204, 0.3); color: #0088cc !important; }
+        .insta:hover { box-shadow: 0 0 30px rgba(225, 48, 108, 0.3); color: #e1306c !important; }
+        .yt:hover { box-shadow: 0 0 30px rgba(255, 0, 0, 0.3); color: #ff0000 !important; }
+        .wa:hover { box-shadow: 0 0 30px rgba(37, 211, 102, 0.3); color: #25d366 !important; }
+        .spotify:hover { box-shadow: 0 0 30px rgba(30, 215, 96, 0.3); color: #1ed760 !important; }
+        .snap:hover { box-shadow: 0 0 30px rgba(255, 252, 0, 0.2); color: #fffc00 !important; }
+        .mail:hover { box-shadow: 0 0 30px rgba(234, 67, 53, 0.3); color: #ea4335 !important; }
+
+        /* Elegant Footer */
         .footer-line {
-            margin-top: 60px;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            position: relative;
+            margin-top: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
         }
 
-        .footer-line::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 6px;
-            height: 6px;
-            background: var(--sapphire-glow);
-            border-radius: 50%;
-            box-shadow: 0 0 15px var(--sapphire-glow);
+        .line {
+            height: 1px;
+            width: 40px;
+            background: linear-gradient(90deg, transparent, var(--glass-border));
+        }
+
+        .line.right {
+            background: linear-gradient(90deg, var(--glass-border), transparent);
+        }
+
+        .version-tag {
+            font-size: 8px;
+            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.2);
+            text-transform: uppercase;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 480px) {
+            .card { width: 90%; padding: 40px 20px; }
+            .grid { grid-template-columns: repeat(4, 1fr); }
+            .icon-btn { height: 65px; font-size: 18px; }
         }
     </style>
 </head>
 <body>
 
+    <div class="ambient-bg"></div>
+
     <div class="card">
         <div class="name-header">
-            <h1>Sangharsh Charde</h1>
+            <h1>Sangharsh</h1>
+            <p>Elite Collection</p>
         </div>
 
         <div class="grid">
@@ -228,12 +262,6 @@
                 <span>Music</span>
             </a>
 
-            <!-- Discord -->
-            <div class="icon-btn discord" onclick="alert('Discord ID: .sangharsh_01')" style="cursor: pointer;">
-                <i class="fa-brands fa-discord"></i>
-                <span>Discord</span>
-            </div>
-
             <!-- Snapchat -->
             <a href="https://www.snapchat.com/add/sanghu_66?share_id=LEjKvZkoqA0&locale=en-US" class="icon-btn snap" target="_blank">
                 <i class="fa-brands fa-snapchat"></i>
@@ -247,7 +275,11 @@
             </a>
         </div>
 
-        <div class="footer-line"></div>
+        <div class="footer-line">
+            <div class="line"></div>
+            <div class="version-tag">Limited Edition</div>
+            <div class="line right"></div>
+        </div>
     </div>
 
 </body>
